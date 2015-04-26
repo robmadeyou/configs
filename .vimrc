@@ -38,8 +38,52 @@
 "    -> Helper functions
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+"
+" " let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Bundle 'arnaud-lb/vim-php-namespace'
+Bundle 'craigemery/vim-autotag'
+Bundle 'StanAngeloff/php.vim'
+Bundle 'scrooloose/syntastic'
+Bundle '907th/vim-auto-save'
+Bundle 'shawncplus/phpcomplete.vim'
+Bundle 'joonty/vim-taggatron'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/unite.vim'
+Bundle 'm2mdas/phpcomplete-extended'
+Bundle 'ervandew/supertab'
+" " All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" " To ignore plugin indent changes, instead use:
+" "filetype plugin on
+" "
+" " Brief help
+" " :PluginList       - lists configured plugins
+" " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" "
+" " see :h vundle for more details or wiki for FAQ
+" " Put your non-Plugin stuff after this line
+inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
+noremap <Leader>u :call PhpInsertUse()<CR>
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -58,11 +102,13 @@ hi LineNr ctermfg=grey
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
-
+let g:auto_save = 1  " enable AutoSave on Vim startup
 " Fast saving
 nmap <leader>w :w!<cr>
-
-
+let g:tagdefaults = "/var/www/tags"
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-Space>
+let g:SuperTabDefaultCompletionType = ""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -71,7 +117,6 @@ set so=7
 
 " Turn on the WiLd menu
 set wildmenu
-
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 
@@ -394,3 +439,13 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
+function! PhpSyntaxOverride()
+      hi! def link phpDocTags  phpDefine
+        hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
+augroup END
