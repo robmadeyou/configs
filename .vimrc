@@ -53,12 +53,10 @@ Bundle 'arnaud-lb/vim-php-namespace'
 Bundle 'craigemery/vim-autotag'
 Bundle 'StanAngeloff/php.vim'
 Bundle 'scrooloose/syntastic'
-Bundle '907th/vim-auto-save'
 Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'joonty/vim-taggatron'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/unite.vim'
-Bundle 'm2mdas/phpcomplete-extended'
 Bundle 'ervandew/supertab'
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
