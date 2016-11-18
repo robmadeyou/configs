@@ -4,8 +4,8 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-gap_size 16
-exec /home/roger/monitorFix.sh
+gaps inner 5
+
 new_window 1pixel
 # i3 config file (v4)
 #
@@ -20,7 +20,8 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec urxvt
+bindsym $mod+Shift+Return exec ~/scripts/i3-shell.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -52,10 +53,12 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+Shift+F exec /home/roger/firefox/firefox
-bindsym $mod+Shift+P exec /home/roger/phpstorm/bin/phpstorm.sh
-bindsym $mod+Shift+H exec wine ~/.wine/drive_c/Program\ Files/HeidiSQL/heidisql.exe
-bindsym $mod+Shift+S exec ~/smartgit/bin/smartgit.sh
+bindsym $mod+Shift+P exec /home/r/Software/phpstorm14/bin/phpstorm.sh
+bindsym $mod+Shift+H exec wine /home/r/.wine/drive_c/Program\ Files/HeidiSQL/heidisql.exe
+bindsym $mod+Shift+S exec ~/Software/smartgit/bin/smartgit.sh
+bindsym $mod+Shift+I exec ~/Software/idea/bin/idea.sh
+bindsym $mod+Shift+N exec i3lock -c 000000
+bindsym $mod+Shift+G exec ~/Software/gitkraken/gitkraken
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -144,7 +147,7 @@ client.focused #9fbc00 #9fbc00 #111111
 # Start i3bar to display a workspace bar (plus the system information i3status
 # # finds out, if available)
 bar {
-    status_command i3status
+    status_command $HOME/.i3/conkyWrapper.sh
     position top
     colors {
         background #222222
