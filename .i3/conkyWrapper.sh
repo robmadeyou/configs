@@ -2,4 +2,4 @@
 echo '{"version":1}';
 echo '[';
 echo '[]';
-exec conky -c $HOME/.conkyrc
+exec conky -c ./conkyrc
