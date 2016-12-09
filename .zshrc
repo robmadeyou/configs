@@ -66,6 +66,17 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vssh="vagrant ssh"
 alias vu="vagrant up"
 alias vh="vagrant halt"
@@ -78,6 +89,8 @@ alias I_am_hacking="echo No you\'re not"
 alias cii="composer install --ignore-platform-reqs"
 alias cui="composer update --ignore-platform-reqs"
 
+
+#alias docker="sudo docker"
 setxkbmap gb
 PATH="/usr/local/heroku/bin:$PATH"
 export FOREGROUND=F9FDFC
